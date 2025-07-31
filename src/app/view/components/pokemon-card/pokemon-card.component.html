@@ -1,0 +1,14 @@
+<div class="card" (click)="pokemonSelected()" [ngStyle]="{ 'background-color': pokemon?.color}">
+  <div class="img-container">
+    <img [src]="pokemon?.imageUrl || urlDefaultImg"/>
+  </div>
+  <div class="name-container">
+    <p>{{ pokemon?.name }}</p>
+    <p>#{{ pokemon?.id }}</p>
+  </div>
+  <div class="chip-container">
+    @for (type of pokemon?.types; track $index) {
+    <div class="chip">{{ type }}</div>
+    }
+  </div>
+</div>

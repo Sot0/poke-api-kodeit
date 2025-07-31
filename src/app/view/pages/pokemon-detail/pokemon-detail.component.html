@@ -1,0 +1,49 @@
+@if (loading()) {
+<app-loader></app-loader>
+} @else {
+<div
+  class="pokemon-detail-card"
+  [ngStyle]="{ backgroundColor: pokemonData.color }"
+>
+  <div class="pokemon-header">
+    <img
+      [src]="pokemonData.imageUrl"
+      [alt]="pokemonData.name"
+      class="pokemon-image"
+    />
+    <div>
+      <h1>{{ pokemonData.name | titlecase }}</h1>
+      <p class="genus">- {{ pokemonData.genus }} -</p>
+      <span class="text-bold">Descripción: </span>
+      <p>{{ pokemonData.description }}</p>
+
+      <p>
+        <span class="text-bold">Consultado: </span>
+        {{ pokemonData.consultedAt | date : "fullDate" }},
+        {{ pokemonData.consultedAt | date : "shortTime" }}
+      </p>
+    </div>
+  </div>
+
+  <div>
+    <h3 class="subtitle">Tipos</h3>
+    <div class="chip-container">
+      @for (type of pokemonData.types; track type) {
+      <span class="chip">{{ type }}</span>
+      }
+    </div>
+  </div>
+
+  <div>
+    <h3 class="subtitle">Habilidades</h3>
+    @for (ability of pokemonData.abilities; track ability.name) {
+    <div class="ability-card">
+      <h4>- {{ ability.name }} -</h4>
+      <p><strong>Efecto:</strong> {{ ability.effect }}</p>
+      <p><strong>Descripción:</strong> {{ ability.description }}</p>
+    </div>
+    }
+  </div>
+</div>
+
+}
